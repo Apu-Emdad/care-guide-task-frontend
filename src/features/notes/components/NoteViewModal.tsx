@@ -9,18 +9,31 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import { IconCalendar, IconEdit, IconRefresh } from '@tabler/icons-react';
+import {
+  IconCalendar,
+  IconEdit,
+  IconRefresh,
+  IconUser,
+} from '@tabler/icons-react';
 import { formatDate } from '@/shared/utils/format';
-import type { Note } from '../types';
+import type { AdminNote, Note } from '../types';
 
-interface Props {
-  note: Note | null;
+interface Props<T extends Note | AdminNote> {
+  note: T | null;
   onClose: () => void;
-  onEdit: (note: Note) => void;
+  /** Left out, the modal is view only (the admin list). */
+  onEdit?: (note: T) => void;
 }
 
-/** Shows the whole note. The table shows only the start of the content. */
-export const NoteViewModal = ({ note, onClose, onEdit }: Props) => {
+/**
+ * Shows the whole note. The table shows only the start of the content.
+ * An admin note also shows its owner.
+ */
+export const NoteViewModal = <T extends Note | AdminNote>({
+  note,
+  onClose,
+  onEdit,
+}: Props<T>) => {
   return (
     <Modal
       opened={!!note}
@@ -37,6 +50,14 @@ export const NoteViewModal = ({ note, onClose, onEdit }: Props) => {
               {note.title}
             </Title>
             <Group gap="md" mt={6}>
+              {typeof note.author === 'object' && (
+                <Group gap={6}>
+                  <IconUser size={14} color="var(--mantine-color-dimmed)" />
+                  <Text size="xs" c="dimmed">
+                    {note.author.fullName} ({note.author.email})
+                  </Text>
+                </Group>
+              )}
               <Group gap={6}>
                 <IconCalendar size={14} color="var(--mantine-color-dimmed)" />
                 <Text size="xs" c="dimmed">
@@ -75,16 +96,18 @@ export const NoteViewModal = ({ note, onClose, onEdit }: Props) => {
             <Button variant="default" onClick={onClose}>
               Close
             </Button>
-            <Button
-              data-autofocus
-              leftSection={<IconEdit size={16} />}
-              onClick={() => {
-                onClose();
-                onEdit(note);
-              }}
-            >
-              Edit
-            </Button>
+            {onEdit && (
+              <Button
+                data-autofocus
+                leftSection={<IconEdit size={16} />}
+                onClick={() => {
+                  onClose();
+                  onEdit(note);
+                }}
+              >
+                Edit
+              </Button>
+            )}
           </Group>
         </Stack>
       )}

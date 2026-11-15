@@ -1,11 +1,21 @@
 import { axios } from '@/shared/api/interceptor';
 import type { Result } from '@/shared/api/types';
 import type { NoteValues } from '../schemas/note.schema';
-import type { Note, NotesFiltersState, NotesList } from '../types';
+import type {
+  AdminNotesList,
+  Note,
+  NotesFiltersState,
+  NotesList,
+} from '../types';
 
 export const notesApi = {
   getNotes: async (params: NotesFiltersState) =>
     (await axios.get<Result<NotesList>>('/notes', { params })).data.data,
+
+  /** Admin only: every user's notes, with the owner in `author`. */
+  getAllNotes: async (params: NotesFiltersState) =>
+    (await axios.get<Result<AdminNotesList>>('/notes/all', { params })).data
+      .data,
 
   createNote: async (values: NoteValues) =>
     (await axios.post<Result<Note>>('/notes', values)).data,

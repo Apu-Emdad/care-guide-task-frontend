@@ -8,6 +8,8 @@ import type { NotesFiltersState } from '../types';
 interface Props {
   filters: NotesFiltersState;
   setFilters: Dispatch<SetStateAction<NotesFiltersState>>;
+  /** First part of the page's query key: `notes` for My notes, `all-notes` for the admin list. */
+  queryKey: string;
 }
 
 export const EMPTY_FILTERS: NotesFiltersState = {
@@ -16,7 +18,7 @@ export const EMPTY_FILTERS: NotesFiltersState = {
   pageSize: 10,
 };
 
-export const NotesFilters = ({ filters, setFilters }: Props) => {
+export const NotesFilters = ({ filters, setFilters, queryKey }: Props) => {
   const queryClient = useQueryClient();
   const [searchText, setSearchText] = useState(filters.search);
 
@@ -34,7 +36,7 @@ export const NotesFilters = ({ filters, setFilters }: Props) => {
     setFilters(EMPTY_FILTERS);
     // Refetches only when the filters were already empty; otherwise the new filters load the list.
     queryClient.refetchQueries({
-      queryKey: ['notes', EMPTY_FILTERS],
+      queryKey: [queryKey, EMPTY_FILTERS],
       exact: true,
     });
   };
