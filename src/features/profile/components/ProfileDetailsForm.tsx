@@ -1,4 +1,5 @@
 import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
+import { modals } from '@mantine/modals';
 import { notifications } from '@mantine/notifications';
 import { IconId, IconMail, IconUser } from '@tabler/icons-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -38,6 +39,19 @@ export const ProfileDetailsForm = ({ user }: { user: AuthUser }) => {
       notifications.show({ color: 'red', message: getErrorMessage(error) }),
   });
 
+  // Every save asks first, the same as the other forms.
+  const handleSubmit = (values: ProfileDetailsValues) =>
+    modals.openConfirmModal({
+      title: 'Save changes?',
+      children: (
+        <Text size="sm" c="dimmed">
+          This updates your name, user name and email.
+        </Text>
+      ),
+      labels: { confirm: 'Confirm', cancel: 'Cancel' },
+      onConfirm: () => updateProfile.mutate(values),
+    });
+
   return (
     <Card withBorder padding="lg">
       <Title order={3} fz={16}>
@@ -47,10 +61,7 @@ export const ProfileDetailsForm = ({ user }: { user: AuthUser }) => {
         Your name, and the user name and email you log in with.
       </Text>
       <FormProvider {...form}>
-        <form
-          onSubmit={form.handleSubmit((values) => updateProfile.mutate(values))}
-          noValidate
-        >
+        <form onSubmit={form.handleSubmit(handleSubmit)} noValidate>
           <Stack gap="sm">
             <FormTextInput
               name="userName"

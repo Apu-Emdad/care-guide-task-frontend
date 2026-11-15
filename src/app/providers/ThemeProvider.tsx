@@ -12,7 +12,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       cssVariablesResolver={cssVariablesResolver}
       defaultColorScheme="auto"
     >
-      <Notifications position="top-right" />
+      {/* Bottom right, so toasts never cover the header's user menu. */}
+      <Notifications position="bottom-right" />
       <ModalsProvider>{children}</ModalsProvider>
     </MantineProvider>
   );

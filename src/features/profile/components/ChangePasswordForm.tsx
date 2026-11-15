@@ -1,4 +1,5 @@
 import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
+import { modals } from '@mantine/modals';
 import { notifications } from '@mantine/notifications';
 import { IconLock } from '@tabler/icons-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -39,8 +40,18 @@ export const ChangePasswordForm = () => {
       notifications.show({ color: 'red', message: getErrorMessage(error) }),
   });
 
+  // Every save asks first, the same as the other forms.
   const onSubmit = ({ currentPassword, newPassword }: ChangePasswordValues) =>
-    changePassword.mutate({ currentPassword, newPassword });
+    modals.openConfirmModal({
+      title: 'Change your password?',
+      children: (
+        <Text size="sm" c="dimmed">
+          You'll stay logged in here, and every other device will be logged out.
+        </Text>
+      ),
+      labels: { confirm: 'Confirm', cancel: 'Cancel' },
+      onConfirm: () => changePassword.mutate({ currentPassword, newPassword }),
+    });
 
   return (
     <Card withBorder padding="lg">
