@@ -63,12 +63,12 @@ export const Header = ({ navOpened, onToggleNav }: Props) => {
                   <Avatar
                     size={30}
                     color="white"
-                    style={{ background: getAvatarGradient(user.userName) }}
+                    style={{ background: getAvatarGradient(user.fullName) }}
                   >
-                    {getInitials(user.userName)}
+                    {getInitials(user.fullName)}
                   </Avatar>
                   <Text size="sm" visibleFrom="sm">
-                    {user.userName}
+                    {user.fullName}
                   </Text>
                 </Group>
               </UnstyledButton>

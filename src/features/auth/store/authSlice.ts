@@ -28,7 +28,7 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.status = 'authenticated';
     },
-    /** After the user changes their own details or verifies their email. */
+    /** After the user changes their own details. */
     setUser(state, action: PayloadAction<AuthUser>) {
       state.user = action.payload;
     },

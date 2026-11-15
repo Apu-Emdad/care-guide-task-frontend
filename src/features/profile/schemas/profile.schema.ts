@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import {
   emailSchema,
+  fullNameSchema,
   passwordSchema,
   userNameSchema,
 } from '@/features/auth/schemas/register.schema';
@@ -8,6 +9,7 @@ import {
 /** Same rules as the API's UpdateProfileDto and ChangePasswordDto. */
 export const profileDetailsSchema = z.object({
   userName: userNameSchema,
+  fullName: fullNameSchema,
   email: emailSchema,
 });
 

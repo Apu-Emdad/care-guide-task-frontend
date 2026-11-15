@@ -1,6 +1,7 @@
 import { Alert, Button, Stack, Text } from '@mantine/core';
 import {
   IconArrowRight,
+  IconId,
   IconLock,
   IconMail,
   IconUser,
@@ -39,6 +40,7 @@ export const RegisterForm = () => {
     resolver: zodResolver(registerSchema),
     defaultValues: {
       userName: '',
+      fullName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -63,6 +65,13 @@ export const RegisterForm = () => {
             placeholder="apu_emdad"
             leftSection={<IconUser size={16} />}
             autoComplete="username"
+          />
+          <FormTextInput
+            name="fullName"
+            label="Full name"
+            placeholder="Apu Emdad"
+            leftSection={<IconId size={16} />}
+            autoComplete="name"
           />
           <FormTextInput
             name="email"
