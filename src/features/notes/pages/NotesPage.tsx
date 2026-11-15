@@ -79,7 +79,11 @@ export const NotesPage = () => {
         }
       />
 
-      <NotesFilters filters={filters} setFilters={setFilters} />
+      <NotesFilters
+        filters={filters}
+        setFilters={setFilters}
+        queryKey="notes"
+      />
 
       <Card withBorder padding={0}>
         <CustomTable
