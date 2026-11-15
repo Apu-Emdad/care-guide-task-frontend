@@ -8,8 +8,8 @@ export const NotFoundPage = () => {
       <Stack align="center" gap="xs">
         <Title order={2}>Page not found</Title>
         <Text c="dimmed">The page you are looking for doesn't exist.</Text>
-        <Button component={Link} to={ROUTES.dashboard} mt="sm">
-          Go to dashboard
+        <Button component={Link} to={ROUTES.profile} mt="sm">
+          Go to home
         </Button>
       </Stack>
     </Center>

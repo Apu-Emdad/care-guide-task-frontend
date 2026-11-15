@@ -1,7 +1,6 @@
 import { AppShell } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Outlet } from 'react-router';
-import { VerifyEmailBanner } from '@/features/auth/components/VerifyEmailBanner';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 
@@ -41,7 +40,6 @@ export const AppLayout = () => {
         />
       </AppShell.Navbar>
       <AppShell.Main>
-        <VerifyEmailBanner />
         <Outlet />
       </AppShell.Main>
     </AppShell>

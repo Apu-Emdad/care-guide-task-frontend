@@ -18,13 +18,13 @@ export const RequireAuth = () => {
   return <Outlet />;
 };
 
-/** Login and register pages: a logged-in user goes to the dashboard. */
+/** Login and register pages: a logged-in user goes to the home page. */
 export const GuestOnly = () => {
   const status = useAppSelector((state) => state.auth.status);
 
   if (status === 'loading') return <PageLoader />;
   if (status === 'authenticated')
-    return <Navigate to={ROUTES.dashboard} replace />;
+    return <Navigate to={ROUTES.profile} replace />;
   return <Outlet />;
 };
 
@@ -32,6 +32,6 @@ export const GuestOnly = () => {
 export const RequireRole = ({ role }: { role: RoleName }) => {
   const user = useAppSelector((state) => state.auth.user);
 
-  if (user?.role !== role) return <Navigate to={ROUTES.dashboard} replace />;
+  if (user?.role !== role) return <Navigate to={ROUTES.profile} replace />;
   return <Outlet />;
 };

@@ -157,10 +157,8 @@ const getTableHeaders = ({
       label: 'Role',
       render: (user) => (
         <Badge
-          variant={
-            user.roleInfo.name === ROLE.SUPER_ADMIN ? 'light' : 'outline'
-          }
-          color={user.roleInfo.name === ROLE.SUPER_ADMIN ? 'brand' : 'gray'}
+          variant={user.roleInfo.name === ROLE.ADMIN ? 'light' : 'outline'}
+          color={user.roleInfo.name === ROLE.ADMIN ? 'brand' : 'gray'}
         >
           {user.roleInfo.name}
         </Badge>

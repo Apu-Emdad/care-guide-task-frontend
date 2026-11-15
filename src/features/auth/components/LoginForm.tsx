@@ -1,4 +1,4 @@
-import { Alert, Anchor, Button, Group, Stack, Text } from '@mantine/core';
+import { Alert, Button, Stack, Text } from '@mantine/core';
 import { IconArrowRight, IconLock, IconUser } from '@tabler/icons-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -20,9 +20,9 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // After login, go back to the page the user was sent away from, or the dashboard.
+  // After login, go back to the page the user was sent away from, or the home page.
   const from =
-    (location.state as { from?: string } | null)?.from ?? ROUTES.dashboard;
+    (location.state as { from?: string } | null)?.from ?? ROUTES.profile;
 
   const login = useMutation({
     mutationFn: authApi.login,
@@ -57,20 +57,7 @@ export const LoginForm = () => {
           />
           <FormPasswordInput
             name="password"
-            label={
-              <Group justify="space-between" wrap="nowrap">
-                Password
-                <Anchor
-                  component={Link}
-                  to={ROUTES.forgotPassword}
-                  size="xs"
-                  fw={500}
-                >
-                  Forgot password?
-                </Anchor>
-              </Group>
-            }
-            labelProps={{ style: { width: '100%' } }}
+            label="Password"
             placeholder="Your password"
             leftSection={<IconLock size={16} />}
             autoComplete="current-password"

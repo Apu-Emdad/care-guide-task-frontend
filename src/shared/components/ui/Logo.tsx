@@ -1,8 +1,7 @@
 import { Group, Text } from '@mantine/core';
 import { IconShieldCheck } from '@tabler/icons-react';
 
-/** "App name" is a placeholder: rename it when you start a project from the starter. */
-export const APP_NAME = 'App name';
+export const APP_NAME = 'Care Guide';
 
 export const Logo = ({ color }: { color?: string }) => {
   return (
