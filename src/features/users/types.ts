@@ -20,6 +20,7 @@ export interface UsersList {
 export interface UsersFiltersState {
   search: string;
   role: string;
+  interest: string;
   page: number;
   pageSize: number;
 }
