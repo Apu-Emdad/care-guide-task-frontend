@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-/** Same rules as the API's RegisterDto. Also used by the profile and reset password forms. */
+/** Same rules as the API's RegisterDto. Also used by the profile form. */
 export const userNameSchema = z
   .string()
   .trim()
@@ -9,6 +9,12 @@ export const userNameSchema = z
     /^[a-z0-9_-]{3,30}$/,
     'User name must be 3 to 30 characters: a-z, 0-9, _ or -',
   );
+
+export const fullNameSchema = z
+  .string()
+  .trim()
+  .min(1, 'Full name is required')
+  .max(100, 'Full name must be at most 100 characters');
 
 export const emailSchema = z
   .string()
@@ -25,6 +31,7 @@ export const passwordSchema = z
 export const registerSchema = z
   .object({
     userName: userNameSchema,
+    fullName: fullNameSchema,
     email: emailSchema,
     password: passwordSchema,
     confirmPassword: z.string(),

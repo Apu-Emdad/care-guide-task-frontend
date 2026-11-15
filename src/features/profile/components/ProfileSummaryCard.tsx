@@ -14,12 +14,15 @@ export const ProfileSummaryCard = ({ user }: { user: AuthUser }) => {
         <Avatar
           size={72}
           color="white"
-          style={{ background: getAvatarGradient(user.userName) }}
+          style={{ background: getAvatarGradient(user.fullName) }}
         >
-          {getInitials(user.userName)}
+          {getInitials(user.fullName)}
         </Avatar>
         <Text fz={18} fw={500}>
-          {user.userName}
+          {user.fullName}
+        </Text>
+        <Text size="sm" c="dimmed" mt={-6}>
+          @{user.userName}
         </Text>
         <Group gap={6} justify="center">
           <Badge variant="light">{user.role}</Badge>

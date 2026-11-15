@@ -1,3 +1,4 @@
+import type { InterestName } from '@/shared/constants/interests';
 import type { RoleName } from '@/shared/constants/roles';
 
 /** Shape of every API response, success or error. */
@@ -10,10 +11,12 @@ export interface Result<T = unknown> {
 }
 
 export interface AuthUser {
-  uid: string;
+  id: string;
   userName: string;
+  fullName: string;
   email: string;
   role: RoleName;
+  interests: InterestName[];
   createdAt: string;
 }
 

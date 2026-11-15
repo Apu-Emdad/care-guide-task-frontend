@@ -1,9 +1,9 @@
-import { Alert, Button, Card, Group, Stack, Text, Title } from '@mantine/core';
+import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { IconMail, IconUser } from '@tabler/icons-react';
+import { IconId, IconMail, IconUser } from '@tabler/icons-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { FormProvider, useForm, useWatch } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useAppDispatch } from '@/app/store/hooks';
 import { setUser } from '@/features/auth/store/authSlice';
 import { getErrorMessage } from '@/shared/api/interceptor';
@@ -21,10 +21,12 @@ export const ProfileDetailsForm = ({ user }: { user: AuthUser }) => {
   // `values` keeps the form in sync with the saved user after a save.
   const form = useForm<ProfileDetailsValues>({
     resolver: zodResolver(profileDetailsSchema),
-    values: { userName: user.userName, email: user.email },
+    values: {
+      userName: user.userName,
+      fullName: user.fullName,
+      email: user.email,
+    },
   });
-  const email = useWatch({ control: form.control, name: 'email' });
-  const emailChanged = email.trim().toLowerCase() !== user.email;
 
   const updateProfile = useMutation({
     mutationFn: profileApi.updateProfile,
@@ -42,7 +44,7 @@ export const ProfileDetailsForm = ({ user }: { user: AuthUser }) => {
         Profile details
       </Title>
       <Text size="sm" c="dimmed" mb="md">
-        Your user name and the email you log in with.
+        Your name, and the user name and email you log in with.
       </Text>
       <FormProvider {...form}>
         <form
@@ -57,17 +59,17 @@ export const ProfileDetailsForm = ({ user }: { user: AuthUser }) => {
               autoComplete="username"
             />
             <FormTextInput
+              name="fullName"
+              label="Full name"
+              leftSection={<IconId size={16} />}
+              autoComplete="name"
+            />
+            <FormTextInput
               name="email"
               label="Email"
               leftSection={<IconMail size={16} />}
               autoComplete="email"
             />
-            {emailChanged && (
-              <Alert color="yellow" variant="light" py="xs">
-                You'll need to verify the new email. We'll send a link to it
-                after you save.
-              </Alert>
-            )}
             <Group justify="flex-end">
               <Button
                 type="submit"

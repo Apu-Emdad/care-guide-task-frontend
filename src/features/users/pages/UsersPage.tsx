@@ -31,7 +31,7 @@ import { usersApi } from '../api/usersApi';
 import type { User, UsersFiltersState } from '../types';
 
 export const UsersPage = () => {
-  const currentUid = useAppSelector((state) => state.auth.user?.uid);
+  const currentUid = useAppSelector((state) => state.auth.user?.id);
   const [filters, setFilters] = useState<UsersFiltersState>(EMPTY_FILTERS);
 
   const { data, refetch, isPending, error } = useQuery({
