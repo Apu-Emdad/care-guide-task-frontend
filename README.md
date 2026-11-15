@@ -1,9 +1,9 @@
-# Care Guide Task Frontend
+# Care Guide
 
-[![CI](https://github.com/Apu-Emdad/react-starter-pack/actions/workflows/ci.yml/badge.svg)](https://github.com/Apu-Emdad/react-starter-pack/actions/workflows/ci.yml)
+[![CI](https://github.com/Apu-Emdad/care-guide-task-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/Apu-Emdad/care-guide-task-frontend/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-A React dashboard starter with login, register, a users admin page and a dashboard already built, so a new project starts with features instead of setup. It works with [nestjs-starter-pack](https://github.com/Apu-Emdad/nestjs-starter-pack) as the API, runs with one command in Docker and comes with tests and CI.
+Frontend of Care Guide, a secure notes app. It uses [care-guide-task-backend](https://github.com/Apu-Emdad/care-guide-task-backend) as the API.
 
 ## Features
 
