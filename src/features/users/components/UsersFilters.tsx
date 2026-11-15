@@ -14,16 +14,11 @@ interface Props {
 export const EMPTY_FILTERS: UsersFiltersState = {
   search: '',
   role: '',
-  isActive: '',
   page: 1,
   pageSize: 10,
 };
 
 const ROLE_OPTIONS = Object.values(ROLE);
-const STATUS_OPTIONS = [
-  { value: 'true', label: 'Active' },
-  { value: 'false', label: 'Inactive' },
-];
 
 export const UsersFilters = ({ filters, setFilters }: Props) => {
   const queryClient = useQueryClient();
@@ -38,8 +33,8 @@ export const UsersFilters = ({ filters, setFilters }: Props) => {
     applySearch(value);
   };
 
-  const handleChange = (key: 'role' | 'isActive', value: string | null) => {
-    setFilters((prev) => ({ ...prev, [key]: value ?? '', page: 1 }));
+  const handleRoleChange = (value: string | null) => {
+    setFilters((prev) => ({ ...prev, role: value ?? '', page: 1 }));
   };
 
   const handleRefresh = () => {
@@ -56,7 +51,7 @@ export const UsersFilters = ({ filters, setFilters }: Props) => {
     <Group gap="sm" grow={false}>
       <TextInput
         style={{ flex: 1, minWidth: 220 }}
-        placeholder="Search by name or email"
+        placeholder="Search by user name, full name or email"
         leftSection={<IconSearch size={16} />}
         value={searchText}
         onChange={(event) => handleSearch(event.currentTarget.value)}
@@ -66,15 +61,7 @@ export const UsersFilters = ({ filters, setFilters }: Props) => {
         placeholder="All roles"
         data={ROLE_OPTIONS}
         value={filters.role || null}
-        onChange={(value) => handleChange('role', value)}
-        clearable
-      />
-      <Select
-        w={150}
-        placeholder="All status"
-        data={STATUS_OPTIONS}
-        value={filters.isActive || null}
-        onChange={(value) => handleChange('isActive', value)}
+        onChange={handleRoleChange}
         clearable
       />
       <ActionIcon

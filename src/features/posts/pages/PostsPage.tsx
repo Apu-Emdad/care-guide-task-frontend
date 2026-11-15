@@ -20,6 +20,7 @@ import {
 } from '@tabler/icons-react';
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { useLocation } from 'react-router';
 import { useAppSelector } from '@/app/store/hooks';
 import { getErrorMessage } from '@/shared/api/interceptor';
 import { PageTop } from '@/shared/components/layout/PageTop';
@@ -54,7 +55,11 @@ type PostFormTarget = { post?: Post } | null;
 export const PostsPage = () => {
   const currentUserId = useAppSelector((state) => state.auth.user?.id);
   const [filters, setFilters] = useState<PostsFiltersState>(EMPTY_FILTERS);
-  const [authorId, setAuthorId] = useState('');
+  const location = useLocation();
+  // The Users page opens this page on one author's posts by passing their id.
+  const [authorId, setAuthorId] = useState<string>(
+    () => (location.state as { authorId?: string } | null)?.authorId ?? '',
+  );
   const [userPostsFilters, setUserPostsFilters] =
     useState<UserPostsFiltersState>(EMPTY_USER_POSTS_FILTERS);
   const [formTarget, setFormTarget] = useState<PostFormTarget>(null);
