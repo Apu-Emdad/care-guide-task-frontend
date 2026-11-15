@@ -130,6 +130,12 @@ export const UserFormModal = ({ user, isSelf, onClose, onSaved }: Props) => {
               placeholder="Pick interests"
               data={INTEREST_OPTIONS}
               clearable
+              searchable
+              // Enter picks the highlighted interest instead of submitting the form.
+              selectFirstOptionOnChange
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') event.preventDefault();
+              }}
             />
             <Group justify="flex-end">
               <Button variant="default" onClick={onClose}>
