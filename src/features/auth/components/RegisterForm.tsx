@@ -62,14 +62,14 @@ export const RegisterForm = () => {
           <FormTextInput
             name="userName"
             label="User name"
-            placeholder="apu_emdad"
+            placeholder="john_doe"
             leftSection={<IconUser size={16} />}
             autoComplete="username"
           />
           <FormTextInput
             name="fullName"
             label="Full name"
-            placeholder="Apu Emdad"
+            placeholder="John Doe"
             leftSection={<IconId size={16} />}
             autoComplete="name"
           />
