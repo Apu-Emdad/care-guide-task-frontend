@@ -1,3 +1,16 @@
 body {
   background: var(--app-bg);
 }
+
+/**
+ * Thin scrollbar that shows only on hover, for native scroll boxes such as a textarea.
+ * Matches the look of Mantine's ScrollArea with type="hover".
+ */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.thin-scrollbar:hover {
+  scrollbar-color: var(--mantine-color-dimmed) transparent;
+}

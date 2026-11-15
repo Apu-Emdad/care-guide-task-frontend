@@ -4,6 +4,11 @@ export const formatDate = (value: string | Date): string => {
   return dayjs(value).format('DD MMM YYYY');
 };
 
+/** Cuts long text to `max` characters and adds "…". */
+export const truncate = (text: string, max: number): string => {
+  return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text;
+};
+
 export const getInitials = (name: string): string => {
   return name.slice(0, 2).toUpperCase();
 };
