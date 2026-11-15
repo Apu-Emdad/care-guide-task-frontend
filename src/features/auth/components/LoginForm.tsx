@@ -10,7 +10,7 @@ import {
   FormPasswordInput,
   FormTextInput,
 } from '@/shared/components/ui/FormFields';
-import { ROUTES } from '@/shared/constants/routes';
+import { HOME_ROUTE, ROUTES } from '@/shared/constants/routes';
 import { authApi } from '../api/authApi';
 import { loginSchema, type LoginValues } from '../schemas/login.schema';
 import { setSession } from '../store/authSlice';
@@ -21,8 +21,7 @@ export const LoginForm = () => {
   const location = useLocation();
 
   // After login, go back to the page the user was sent away from, or the home page.
-  const from =
-    (location.state as { from?: string } | null)?.from ?? ROUTES.profile;
+  const from = (location.state as { from?: string } | null)?.from ?? HOME_ROUTE;
 
   const login = useMutation({
     mutationFn: authApi.login,

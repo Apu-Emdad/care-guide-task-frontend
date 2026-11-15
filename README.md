@@ -10,6 +10,7 @@ Frontend of Care Guide, a secure notes app. It uses [care-guide-task-backend](ht
 - **Auth:** login and register screens. The user and access token are saved in `localStorage` with `redux-persist`, so a page reload keeps the session. Without a saved token, the `httpOnly` refresh cookie restores it. An expired token is refreshed once, in the background, and the failed request is retried.
 - **Account self-service:** forgot and reset password, email verification from the email link, a dismissible "verify your email" banner with a resend link, and a profile page to change the user name, email and password. Verification is optional: unverified users can use everything.
 - **Protected routes:** `RequireAuth`, `GuestOnly` and `RequireRole` guards, and a redirect back to the page the user came from.
+- **Role-based sidebar:** a `USER` sees My notes and Posts. An `ADMIN` also sees All notes, Users and Interests. Hiding a link only hides the UI: the API checks the role on every request, and a 403 shows a "No access" message.
 - **Users admin:** list with search, role and status filters and paging, plus deactivate and delete with a confirm dialog (super admin only).
 - **Dashboard:** welcome banner, stat cards and a chart.
 - **Form fields:** `FormTextInput`, `FormSelect`, `FormSwitch` and more in one file. Each field needs only a `name`, and the schema comes from Zod.

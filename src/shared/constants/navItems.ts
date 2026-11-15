@@ -1,4 +1,11 @@
-import { IconUsers, type Icon } from '@tabler/icons-react';
+import {
+  IconHeart,
+  IconNews,
+  IconNotebook,
+  IconNotes,
+  IconUsers,
+  type Icon,
+} from '@tabler/icons-react';
 import { ROLE, type RoleName } from './roles';
 import { ROUTES } from './routes';
 
@@ -16,14 +23,28 @@ export interface NavItem {
 /**
  * Sidebar links
  *
- * Nested to any depth through `children`.
+ * A USER sees My notes and Posts. An ADMIN also sees All notes, Users and Interests.
  * Hiding a link only hides the UI: the API guards the route.
  */
 export const NAV_ITEMS: NavItem[] = [
+  { label: 'My notes', url: ROUTES.notes, icon: IconNotes },
+  { label: 'Posts', url: ROUTES.posts, icon: IconNews },
+  {
+    label: 'All notes',
+    url: ROUTES.allNotes,
+    icon: IconNotebook,
+    roles: [ROLE.ADMIN],
+  },
   {
     label: 'Users',
     url: ROUTES.users,
     icon: IconUsers,
+    roles: [ROLE.ADMIN],
+  },
+  {
+    label: 'Interests',
+    url: ROUTES.interests,
+    icon: IconHeart,
     roles: [ROLE.ADMIN],
   },
 ];

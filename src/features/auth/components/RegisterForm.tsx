@@ -16,7 +16,7 @@ import {
   FormPasswordInput,
   FormTextInput,
 } from '@/shared/components/ui/FormFields';
-import { ROUTES } from '@/shared/constants/routes';
+import { HOME_ROUTE, ROUTES } from '@/shared/constants/routes';
 import { authApi } from '../api/authApi';
 import {
   registerSchema,
@@ -33,7 +33,7 @@ export const RegisterForm = () => {
     mutationFn: authApi.register,
     onSuccess: (payload) => {
       dispatch(setSession(payload));
-      navigate(ROUTES.profile, { replace: true });
+      navigate(HOME_ROUTE, { replace: true });
     },
   });
   const form = useForm<RegisterValues>({
