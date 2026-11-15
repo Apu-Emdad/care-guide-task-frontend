@@ -80,7 +80,7 @@ export const UsersPage = () => {
     <Stack gap="md">
       <PageTop
         title="Users"
-        description={`${total} people can sign in.`}
+        description={`${total} ${total === 1 ? 'user' : 'users'}`}
         rightSection={
           <Button
             leftSection={<IconPlus size={16} />}

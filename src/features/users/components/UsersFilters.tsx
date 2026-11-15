@@ -3,6 +3,7 @@ import { useDebouncedCallback } from '@mantine/hooks';
 import { IconRefresh, IconSearch } from '@tabler/icons-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState, type Dispatch, type SetStateAction } from 'react';
+import { INTEREST } from '@/shared/constants/interests';
 import { ROLE } from '@/shared/constants/roles';
 import type { UsersFiltersState } from '../types';
 
@@ -14,11 +15,13 @@ interface Props {
 export const EMPTY_FILTERS: UsersFiltersState = {
   search: '',
   role: '',
+  interest: '',
   page: 1,
   pageSize: 10,
 };
 
 const ROLE_OPTIONS = Object.values(ROLE);
+const INTEREST_OPTIONS = Object.values(INTEREST);
 
 export const UsersFilters = ({ filters, setFilters }: Props) => {
   const queryClient = useQueryClient();
@@ -33,8 +36,8 @@ export const UsersFilters = ({ filters, setFilters }: Props) => {
     applySearch(value);
   };
 
-  const handleRoleChange = (value: string | null) => {
-    setFilters((prev) => ({ ...prev, role: value ?? '', page: 1 }));
+  const handleChange = (key: 'role' | 'interest', value: string | null) => {
+    setFilters((prev) => ({ ...prev, [key]: value ?? '', page: 1 }));
   };
 
   const handleRefresh = () => {
@@ -61,7 +64,15 @@ export const UsersFilters = ({ filters, setFilters }: Props) => {
         placeholder="All roles"
         data={ROLE_OPTIONS}
         value={filters.role || null}
-        onChange={handleRoleChange}
+        onChange={(value) => handleChange('role', value)}
+        clearable
+      />
+      <Select
+        w={170}
+        placeholder="All interests"
+        data={INTEREST_OPTIONS}
+        value={filters.interest || null}
+        onChange={(value) => handleChange('interest', value)}
         clearable
       />
       <ActionIcon
