@@ -1,12 +1,28 @@
 import { Button, Stack, Text, ThemeIcon } from '@mantine/core';
-import { IconAlertTriangle } from '@tabler/icons-react';
+import { IconAlertTriangle, IconLock } from '@tabler/icons-react';
 
 interface Props {
   message: string;
   onRetry?: () => void;
+  /** A 403: shows "No access" and no retry button, since trying again won't help. */
+  forbidden?: boolean;
 }
 
-export const ErrorState = ({ message, onRetry }: Props) => {
+export const ErrorState = ({ message, onRetry, forbidden = false }: Props) => {
+  if (forbidden) {
+    return (
+      <Stack align="center" gap="xs" py="xl">
+        <ThemeIcon variant="light" color="yellow" size={48} radius="xl">
+          <IconLock size={24} />
+        </ThemeIcon>
+        <Text fw={500}>No access</Text>
+        <Text c="dimmed" size="sm" ta="center">
+          {message}
+        </Text>
+      </Stack>
+    );
+  }
+
   return (
     <Stack align="center" gap="xs" py="xl">
       <ThemeIcon variant="light" color="red" size={48} radius="xl">

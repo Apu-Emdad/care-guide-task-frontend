@@ -83,6 +83,10 @@ axios.interceptors.response.use(undefined, async (error: AxiosError) => {
   return axios(config);
 });
 
+/** True when the API answered 403: the user is logged in but their role can't do this. */
+export const isForbidden = (error: unknown): boolean =>
+  isAxiosError(error) && error.response?.status === 403;
+
 /** The API's `message` for a failed request, or a fallback. */
 export const getErrorMessage = (
   error: unknown,

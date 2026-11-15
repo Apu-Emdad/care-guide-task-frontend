@@ -4,18 +4,22 @@ import {
   RequireAuth,
   RequireRole,
 } from '@/features/auth/guards/guards';
+import { InterestsPage } from '@/features/interests/pages/InterestsPage';
 import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { RegisterPage } from '@/features/auth/pages/RegisterPage';
+import { AllNotesPage } from '@/features/notes/pages/AllNotesPage';
+import { NotesPage } from '@/features/notes/pages/NotesPage';
+import { PostsPage } from '@/features/posts/pages/PostsPage';
 import { ProfilePage } from '@/features/profile/pages/ProfilePage';
 import { UsersPage } from '@/features/users/pages/UsersPage';
 import { AppLayout } from '@/shared/components/layout/AppLayout';
 import { ROLE } from '@/shared/constants/roles';
-import { ROUTES } from '@/shared/constants/routes';
+import { HOME_ROUTE, ROUTES } from '@/shared/constants/routes';
 import { NotFoundPage } from './NotFoundPage';
 
 /** Exported so tests can render the same routes in a memory router. */
 export const routes: RouteObject[] = [
-  { path: ROUTES.root, element: <Navigate to={ROUTES.profile} replace /> },
+  { path: ROUTES.root, element: <Navigate to={HOME_ROUTE} replace /> },
   {
     element: <GuestOnly />,
     children: [
@@ -30,9 +34,15 @@ export const routes: RouteObject[] = [
         element: <AppLayout />,
         children: [
           { path: ROUTES.profile, element: <ProfilePage /> },
+          { path: ROUTES.notes, element: <NotesPage /> },
+          { path: ROUTES.posts, element: <PostsPage /> },
           {
             element: <RequireRole role={ROLE.ADMIN} />,
-            children: [{ path: ROUTES.users, element: <UsersPage /> }],
+            children: [
+              { path: ROUTES.allNotes, element: <AllNotesPage /> },
+              { path: ROUTES.users, element: <UsersPage /> },
+              { path: ROUTES.interests, element: <InterestsPage /> },
+            ],
           },
         ],
       },

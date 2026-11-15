@@ -1,6 +1,6 @@
 import { Group, Pagination, Table, Text } from '@mantine/core';
 import type { CSSProperties, ReactNode } from 'react';
-import { getErrorMessage } from '@/shared/api/interceptor';
+import { getErrorMessage, isForbidden } from '@/shared/api/interceptor';
 import { EmptyState } from './EmptyState';
 import { ErrorState } from './ErrorState';
 import { PageLoader } from './PageLoader';
@@ -49,7 +49,13 @@ export const CustomTable = <T,>({
   if (isPending) return <PageLoader />;
 
   if (error) {
-    return <ErrorState message={getErrorMessage(error)} onRetry={onRetry} />;
+    return (
+      <ErrorState
+        message={getErrorMessage(error)}
+        onRetry={onRetry}
+        forbidden={isForbidden(error)}
+      />
+    );
   }
 
   if (rows.length === 0) {
