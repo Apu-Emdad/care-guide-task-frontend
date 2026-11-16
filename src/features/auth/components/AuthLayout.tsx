@@ -9,7 +9,6 @@ interface Props {
   children: ReactNode;
 }
 
-/** Split screen: a brand panel on large screens, and the form. */
 export const AuthLayout = ({ title, subtitle, children }: Props) => {
   return (
     <Box className={classes.root}>

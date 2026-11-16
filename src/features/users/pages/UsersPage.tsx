@@ -34,10 +34,8 @@ import { UserFormModal } from '../components/UserFormModal';
 import { EMPTY_FILTERS, UsersFilters } from '../components/UsersFilters';
 import type { User, UsersFiltersState } from '../types';
 
-/** The user being edited, or `{}` for a new user. `null` while the form is closed. */
 type UserFormTarget = { user?: User } | null;
 
-/** Admin only: add, list, edit and delete users. */
 export const UsersPage = () => {
   const currentUserId = useAppSelector((state) => state.auth.user?.id);
   const navigate = useNavigate();
@@ -181,7 +179,6 @@ const getTableHeaders = ({
         <Badge
           variant={user.role === ROLE.ADMIN ? 'light' : 'outline'}
           color={user.role === ROLE.ADMIN ? 'brand' : 'gray'}
-          // The interests column is wide, so keep the role from being cut to "U…".
           styles={{
             root: { overflow: 'visible' },
             label: { overflow: 'visible' },
@@ -218,7 +215,6 @@ const getTableHeaders = ({
     },
     {
       label: '',
-      // An admin can't delete themselves, so their own row has no actions.
       render: (user) =>
         user.id === currentUserId ? null : (
           <Group gap={4} justify="flex-end" wrap="nowrap">

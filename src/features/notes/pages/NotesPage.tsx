@@ -25,7 +25,6 @@ import { NoteViewModal } from '../components/NoteViewModal';
 import { EMPTY_FILTERS, NotesFilters } from '../components/NotesFilters';
 import type { Note, NotesFiltersState } from '../types';
 
-/** The note being edited, or `{}` for a new note. `null` while the form is closed. */
 type NoteFormTarget = { note?: Note } | null;
 
 export const NotesPage = () => {
@@ -128,7 +127,6 @@ export const NotesPage = () => {
   );
 };
 
-/** Characters of content shown in the table. View shows the whole note. */
 const CONTENT_PREVIEW_LENGTH = 80;
 
 interface TableHeadersDeps {

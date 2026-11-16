@@ -8,7 +8,6 @@ import { ThemeProvider } from './providers/ThemeProvider';
 import { router } from './router';
 import { persistor, store } from './store/store';
 
-/** Runs after the saved session loads. Without a saved token, the refresh cookie (if any) restores it. */
 const restoreSession = () => {
   if (store.getState().auth.accessToken) return;
   refreshSession().catch(() => store.dispatch(clearSession()));

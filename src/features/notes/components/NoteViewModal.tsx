@@ -21,14 +21,9 @@ import type { AdminNote, Note } from '../types';
 interface Props<T extends Note | AdminNote> {
   note: T | null;
   onClose: () => void;
-  /** Left out, the modal is view only (the admin list). */
   onEdit?: (note: T) => void;
 }
 
-/**
- * Shows the whole note. The table shows only the start of the content.
- * An admin note also shows its owner.
- */
 export const NoteViewModal = <T extends Note | AdminNote>({
   note,
   onClose,

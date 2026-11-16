@@ -4,7 +4,6 @@ import { PageLoader } from '@/shared/components/ui/PageLoader';
 import type { RoleName } from '@/shared/constants/roles';
 import { HOME_ROUTE, ROUTES } from '@/shared/constants/routes';
 
-/** Needs a login. While the saved session is being checked, shows a loader. */
 export const RequireAuth = () => {
   const status = useAppSelector((state) => state.auth.status);
   const location = useLocation();
@@ -18,7 +17,6 @@ export const RequireAuth = () => {
   return <Outlet />;
 };
 
-/** Login and register pages: a logged-in user goes to the home page. */
 export const GuestOnly = () => {
   const status = useAppSelector((state) => state.auth.status);
 
@@ -27,7 +25,6 @@ export const GuestOnly = () => {
   return <Outlet />;
 };
 
-/** Admin pages: other roles go to the home page. This only hides the UI: the API guards the routes. */
 export const RequireRole = ({ role }: { role: RoleName }) => {
   const user = useAppSelector((state) => state.auth.user);
 

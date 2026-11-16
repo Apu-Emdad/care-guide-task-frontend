@@ -12,7 +12,6 @@ export const notesApi = {
   getNotes: async (params: NotesFiltersState) =>
     (await axios.get<Result<NotesList>>('/notes', { params })).data.data,
 
-  /** Admin only: every user's notes, with the owner in `author`. */
   getAllNotes: async (params: NotesFiltersState) =>
     (await axios.get<Result<AdminNotesList>>('/notes/all', { params })).data
       .data,

@@ -11,13 +11,11 @@ import { postSchema, type PostValues } from '../schemas/post.schema';
 import type { Post } from '../types';
 
 interface Props {
-  /** The post to edit. Left out, the form creates a new post. */
   post?: Post;
   onClose: () => void;
   onSaved: () => void;
 }
 
-/** Create or edit a post. The page renders it only while it is open. */
 export const PostFormModal = ({ post, onClose, onSaved }: Props) => {
   const form = useForm<PostValues>({
     resolver: zodResolver(postSchema),
@@ -36,7 +34,6 @@ export const PostFormModal = ({ post, onClose, onSaved }: Props) => {
     },
   });
 
-  // Every save asks first, the same as delete.
   const handleSubmit = (values: PostValues) =>
     modals.openConfirmModal({
       title: post ? 'Save changes?' : 'Create this post?',

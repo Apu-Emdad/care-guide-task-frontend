@@ -11,13 +11,11 @@ import { noteSchema, type NoteValues } from '../schemas/note.schema';
 import type { Note } from '../types';
 
 interface Props {
-  /** The note to edit. Left out, the form creates a new note. */
   note?: Note;
   onClose: () => void;
   onSaved: () => void;
 }
 
-/** Create or edit a note. The page renders it only while it is open. */
 export const NoteFormModal = ({ note, onClose, onSaved }: Props) => {
   const form = useForm<NoteValues>({
     resolver: zodResolver(noteSchema),
@@ -36,7 +34,6 @@ export const NoteFormModal = ({ note, onClose, onSaved }: Props) => {
     },
   });
 
-  // Every save asks first, the same as delete.
   const handleSubmit = (values: NoteValues) =>
     modals.openConfirmModal({
       title: note ? 'Save changes?' : 'Create this note?',

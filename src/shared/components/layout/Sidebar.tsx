@@ -25,7 +25,6 @@ interface Props {
   onClose: () => void;
 }
 
-/** Collapsed, it shows only the icons. Parents then open their children in a flyout menu. */
 export const Sidebar = ({ expanded, onToggleExpanded, onClose }: Props) => {
   const role = useAppSelector((state) => state.auth.user?.role);
   const items = filterByRole(NAV_ITEMS, role);
@@ -83,12 +82,6 @@ export const Sidebar = ({ expanded, onToggleExpanded, onClose }: Props) => {
   );
 };
 
-/**
- * One link in the expanded tree
- *
- * A parent starts open when it holds the current page. Clicking a parent with
- * a url goes there and opens it; clicking it again on its own page closes it.
- */
 const TreeItem = ({ item }: { item: NavItem }) => {
   const { pathname } = useLocation();
   const branchActive = isActive(item, pathname);
@@ -129,7 +122,6 @@ const TreeItem = ({ item }: { item: NavItem }) => {
   );
 };
 
-/** One top-level icon in the collapsed sidebar. */
 const CollapsedItem = ({ item }: { item: NavItem }) => {
   const { pathname } = useLocation();
   const Icon = item.icon;
@@ -176,7 +168,6 @@ const CollapsedItem = ({ item }: { item: NavItem }) => {
   );
 };
 
-/** Children in the flyout. A child with its own children opens a sub menu. */
 const FlyoutItems = ({ items }: { items: NavItem[] }) => {
   return items.map((item) => {
     const Icon = item.icon;
@@ -213,7 +204,6 @@ const FlyoutItems = ({ items }: { items: NavItem[] }) => {
   });
 };
 
-/** True when the item's url or any of its children's urls holds the current page. */
 const isActive = (item: NavItem, pathname: string): boolean => {
   return (
     (!!item.url && pathname.startsWith(item.url)) ||
@@ -221,7 +211,6 @@ const isActive = (item: NavItem, pathname: string): boolean => {
   );
 };
 
-/** Drops links the role can't see, and parents left with nothing to open. */
 const filterByRole = (items: NavItem[], role?: RoleName): NavItem[] => {
   return items
     .filter((item) => !item.roles || (!!role && item.roles.includes(role)))

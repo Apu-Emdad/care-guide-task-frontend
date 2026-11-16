@@ -28,7 +28,6 @@ export const ChangePasswordForm = () => {
     defaultValues: DEFAULT_VALUES,
   });
 
-  // The API ends every session and returns a new pair, so this tab stays logged in.
   const changePassword = useMutation({
     mutationFn: profileApi.changePassword,
     onSuccess: (result) => {
@@ -40,7 +39,6 @@ export const ChangePasswordForm = () => {
       notifications.show({ color: 'red', message: getErrorMessage(error) }),
   });
 
-  // Every save asks first, the same as the other forms.
   const onSubmit = ({ currentPassword, newPassword }: ChangePasswordValues) =>
     modals.openConfirmModal({
       title: 'Change your password?',

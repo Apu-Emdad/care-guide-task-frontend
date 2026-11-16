@@ -17,7 +17,6 @@ import { ROLE } from '@/shared/constants/roles';
 import { HOME_ROUTE, ROUTES } from '@/shared/constants/routes';
 import { NotFoundPage } from './NotFoundPage';
 
-/** Exported so tests can render the same routes in a memory router. */
 export const routes: RouteObject[] = [
   { path: ROUTES.root, element: <Navigate to={HOME_ROUTE} replace /> },
   {

@@ -43,7 +43,6 @@ export const UsersFilters = ({ filters, setFilters }: Props) => {
   const handleRefresh = () => {
     setSearchText('');
     setFilters(EMPTY_FILTERS);
-    // Refetches only when the filters were already empty; otherwise the new filters load the list.
     queryClient.refetchQueries({
       queryKey: ['users', EMPTY_FILTERS],
       exact: true,

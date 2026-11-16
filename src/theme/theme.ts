@@ -6,7 +6,6 @@ import {
   type MantineColorsTuple,
 } from '@mantine/core';
 
-/** Brand indigo. Shade 6 is the light-mode accent, shade 4 the dark-mode accent. */
 const brand: MantineColorsTuple = [
   '#ECEAFF',
   '#DAD6FF',
@@ -20,7 +19,6 @@ const brand: MantineColorsTuple = [
   '#2F2780',
 ];
 
-/** Dark surfaces, lightest text (0) to page background (9). */
 const dark: MantineColorsTuple = [
   '#EEF0FA',
   '#C9CCE3',
@@ -54,7 +52,6 @@ export const theme = createTheme({
   },
 });
 
-/** Page and surface colors from the design tokens. */
 export const cssVariablesResolver: CSSVariablesResolver = () => ({
   variables: {},
   light: {

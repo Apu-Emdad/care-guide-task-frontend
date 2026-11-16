@@ -20,13 +20,11 @@ import type { Post } from '../types';
 
 interface Props {
   post: Post | null;
-  /** Only the author can edit, so the page passes this only for their own posts. */
   canEdit: boolean;
   onClose: () => void;
   onEdit: (post: Post) => void;
 }
 
-/** Shows the whole post. The table shows only the start of the content. */
 export const PostViewModal = ({ post, canEdit, onClose, onEdit }: Props) => {
   return (
     <Modal

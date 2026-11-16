@@ -27,7 +27,6 @@ export const AppLayout = () => {
       <AppShell.Header>
         <Header navOpened={navOpened} onToggleNav={toggle} />
       </AppShell.Header>
-      {/* On phones, close the drawer after a link is picked, not when a parent opens. */}
       <AppShell.Navbar
         onClick={(event) => {
           if ((event.target as HTMLElement).closest('a')) close();

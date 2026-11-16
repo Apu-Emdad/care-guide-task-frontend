@@ -13,10 +13,6 @@ export const postsApi = {
   getPosts: async (params: PostsFiltersState) =>
     (await axios.get<Result<PostsList>>('/posts', { params })).data.data,
 
-  /**
-   * One author's posts, from the single $lookup aggregation.
-   * Each post gets the author back, so the page renders both lists the same way.
-   */
   getUserPosts: async (authorId: string, params: UserPostsFiltersState) => {
     const { user, total, posts } = (
       await axios.get<Result<UserPostsList>>(`/posts/user/${authorId}`, {

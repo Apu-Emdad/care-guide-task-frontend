@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-/** Same rules as the API's CreateNoteDto and UpdateNoteDto. */
 export const noteSchema = z.object({
   title: z
     .string()

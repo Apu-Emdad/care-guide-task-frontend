@@ -1,7 +1,6 @@
 import type { InterestName } from '@/shared/constants/interests';
 import type { RoleName } from '@/shared/constants/roles';
 
-/** Shape of every API response, success or error. */
 export interface Result<T = unknown> {
   status: number;
   message: string;
@@ -20,7 +19,6 @@ export interface AuthUser {
   createdAt: string;
 }
 
-/** What login, register and refresh return in `data`. */
 export interface AuthPayload {
   accessToken: string;
   tokenType: string;

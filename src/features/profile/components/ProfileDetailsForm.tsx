@@ -19,7 +19,6 @@ import {
 export const ProfileDetailsForm = ({ user }: { user: AuthUser }) => {
   const dispatch = useAppDispatch();
 
-  // `values` keeps the form in sync with the saved user after a save.
   const form = useForm<ProfileDetailsValues>({
     resolver: zodResolver(profileDetailsSchema),
     values: {
@@ -39,7 +38,6 @@ export const ProfileDetailsForm = ({ user }: { user: AuthUser }) => {
       notifications.show({ color: 'red', message: getErrorMessage(error) }),
   });
 
-  // Every save asks first, the same as the other forms.
   const handleSubmit = (values: ProfileDetailsValues) =>
     modals.openConfirmModal({
       title: 'Save changes?',

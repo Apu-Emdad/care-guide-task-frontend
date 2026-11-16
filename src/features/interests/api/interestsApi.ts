@@ -3,7 +3,6 @@ import type { Result } from '@/shared/api/types';
 import type { InterestGroup, InterestsQuery } from '../types';
 
 export const interestsApi = {
-  /** Admin only: users grouped by interest, from one aggregate call. */
   getUsersByInterest: async (params: InterestsQuery) =>
     (await axios.get<Result<InterestGroup[]>>('/users/interests', { params }))
       .data.data,

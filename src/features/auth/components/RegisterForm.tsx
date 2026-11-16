@@ -28,7 +28,6 @@ export const RegisterForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // The API logs the new user in, so go straight to the home page.
   const register = useMutation({
     mutationFn: authApi.register,
     onSuccess: (payload) => {

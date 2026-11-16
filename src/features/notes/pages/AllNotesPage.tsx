@@ -26,7 +26,6 @@ import { NoteViewModal } from '../components/NoteViewModal';
 import { EMPTY_FILTERS, NotesFilters } from '../components/NotesFilters';
 import type { AdminNote, NotesFiltersState } from '../types';
 
-/** Admin only: every user's notes, view only. Admins can't change other users' notes. */
 export const AllNotesPage = () => {
   const [filters, setFilters] = useState<NotesFiltersState>(EMPTY_FILTERS);
   const [viewNote, setViewNote] = useState<AdminNote | null>(null);
@@ -79,7 +78,6 @@ export const AllNotesPage = () => {
   );
 };
 
-/** Characters of content shown in the table. View shows the whole note. */
 const CONTENT_PREVIEW_LENGTH = 80;
 
 interface TableHeadersDeps {

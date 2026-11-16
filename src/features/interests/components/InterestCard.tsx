@@ -24,11 +24,6 @@ interface InterestCardProps {
   pageSize: number;
 }
 
-/**
- * One interest with its own pager.
- *
- * Page 1 comes from the page's grouped call. Other pages fetch only this interest.
- */
 export const InterestCard = ({ group, pageSize }: InterestCardProps) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -112,3 +107,4 @@ export const InterestCard = ({ group, pageSize }: InterestCardProps) => {
     </Card>
   );
 };
+``;

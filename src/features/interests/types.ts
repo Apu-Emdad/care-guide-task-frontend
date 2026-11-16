@@ -7,7 +7,6 @@ export interface InterestUser {
   email: string;
 }
 
-/** One interest from the grouped aggregation: its user count and one page of its users. */
 export interface InterestGroup {
   interest: InterestName;
   count: number;

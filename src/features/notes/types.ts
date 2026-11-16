@@ -7,7 +7,6 @@ export interface Note {
   updatedAt: string;
 }
 
-/** The owner of a note, as the admin list sends it. */
 export interface NoteAuthor {
   _id: string;
   userName: string;
@@ -15,7 +14,6 @@ export interface NoteAuthor {
   email: string;
 }
 
-/** A note in the admin list: `author` comes filled in with the owner. */
 export interface AdminNote extends Omit<Note, 'author'> {
   author: NoteAuthor;
 }
@@ -30,7 +28,6 @@ export interface NotesList {
   notes: Note[];
 }
 
-/** Everything the list page filters by. */
 export interface NotesFiltersState {
   search: string;
   page: number;

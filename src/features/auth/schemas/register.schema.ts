@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-/** Same rules as the API's RegisterDto. Also used by the profile form. */
 export const userNameSchema = z
   .string()
   .trim()

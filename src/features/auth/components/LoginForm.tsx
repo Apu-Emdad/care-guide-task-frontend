@@ -20,7 +20,6 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // After login, go back to the page the user was sent away from, or the home page.
   const from = (location.state as { from?: string } | null)?.from ?? HOME_ROUTE;
 
   const login = useMutation({

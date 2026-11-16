@@ -8,9 +8,7 @@ interface Props {
   title: string;
   description?: string;
   backBtn?: boolean;
-  /** Where Back goes when there is no page to go back to, e.g. a link opened in a new tab. */
   fallbackPath?: string;
-  /** Shown on the right of the title, e.g. an "Add" button. */
   rightSection?: ReactNode;
 }
 
@@ -24,7 +22,6 @@ export const PageTop = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  // React Router gives the first page of a visit the key 'default'.
   const handleBack = () =>
     location.key === 'default' ? navigate(fallbackPath) : navigate(-1);
 

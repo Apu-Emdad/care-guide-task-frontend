@@ -21,18 +21,6 @@ import {
 import { DateInput, type DateInputProps } from '@mantine/dates';
 import { get, useController, useFormContext } from 'react-hook-form';
 
-/**
- * Form fields for react-hook-form
- *
- * Every field reads the form from <FormProvider>, so a field only needs a `name`:
- *
- *   <FormSelect name="role" label="Role" data={roles} />
- *
- * Text inputs use `register`, so typing doesn't re-render the form.
- * The other inputs use `useController`, since they don't send a normal change event.
- * All other props go to the Mantine component.
- */
-
 type Named<P> = Omit<
   P,
   'name' | 'value' | 'defaultValue' | 'onChange' | 'error'
@@ -40,7 +28,6 @@ type Named<P> = Omit<
   name: string;
 };
 
-/** Text inputs keep their value in the DOM, so typing doesn't re-render the form. */
 const useRegistered = (name: string) => {
   const {
     register,
@@ -73,7 +60,6 @@ const useControlled = (name: string) => {
   return { field, error: fieldState.error?.message };
 };
 
-/** Called after the user (not the form) changes the value, e.g. to reset a dependent field. */
 export const FormSelect = ({
   name,
   onValueChange,
@@ -171,7 +157,6 @@ export const FormSwitch = ({ name, ...props }: Named<SwitchProps>) => {
   );
 };
 
-/** Pass the radios as children: <FormRadioGroup name="plan"><Radio value="a" label="A" /></FormRadioGroup> */
 export const FormRadioGroup = ({
   name,
   children,

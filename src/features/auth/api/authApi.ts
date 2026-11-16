@@ -3,7 +3,6 @@ import type { AuthPayload, AuthUser, Result } from '@/shared/api/types';
 import type { LoginValues } from '../schemas/login.schema';
 import type { RegisterValues } from '../schemas/register.schema';
 
-/** Wrong credentials return 401, which must not start a token refresh. */
 const noRefresh = { skipAuthRefresh: true };
 
 export const authApi = {

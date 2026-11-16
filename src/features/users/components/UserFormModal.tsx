@@ -23,9 +23,7 @@ import {
 import type { User } from '../types';
 
 interface Props {
-  /** The user to edit. Left out, the form creates a new user. */
   user?: User;
-  /** True on the admin's own row: they can't change their own role. */
   isSelf: boolean;
   onClose: () => void;
   onSaved: () => void;
@@ -34,9 +32,7 @@ interface Props {
 const ROLE_OPTIONS = Object.values(ROLE);
 const INTEREST_OPTIONS = Object.values(INTEREST);
 
-/** Create or edit a user. The page renders it only while it is open. */
 export const UserFormModal = ({ user, isSelf, onClose, onSaved }: Props) => {
-  // The password field exists only when creating, so editing doesn't check it.
   const form = useForm<CreateUserValues>({
     resolver: zodResolver(user ? editUserFormSchema : createUserSchema),
     defaultValues: {
@@ -61,7 +57,6 @@ export const UserFormModal = ({ user, isSelf, onClose, onSaved }: Props) => {
     },
   });
 
-  // Every save asks first, the same as delete.
   const handleSubmit = (values: CreateUserValues) =>
     modals.openConfirmModal({
       title: user ? 'Save changes?' : 'Add this user?',
@@ -131,7 +126,6 @@ export const UserFormModal = ({ user, isSelf, onClose, onSaved }: Props) => {
               data={INTEREST_OPTIONS}
               clearable
               searchable
-              // Enter picks the highlighted interest instead of submitting the form.
               selectFirstOptionOnChange
               onKeyDown={(event) => {
                 if (event.key === 'Enter') event.preventDefault();

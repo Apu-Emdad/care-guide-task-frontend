@@ -18,7 +18,6 @@ import { configureInterceptor } from '@/shared/api/interceptor';
 
 const rootReducer = combineReducers({ auth: authReducer });
 
-/** Saves the session (user and access token) in localStorage, so a page reload keeps it. */
 const persistedReducer = persistReducer(
   { key: 'root', storage, whitelist: ['auth'] },
   rootReducer,
@@ -26,7 +25,6 @@ const persistedReducer = persistReducer(
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-/** Store without localStorage, for tests. */
 export const makeStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({ reducer: rootReducer, preloadedState });
 };

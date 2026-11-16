@@ -5,7 +5,6 @@ import { ChangePasswordForm } from '../components/ChangePasswordForm';
 import { ProfileDetailsForm } from '../components/ProfileDetailsForm';
 import { ProfileSummaryCard } from '../components/ProfileSummaryCard';
 
-/** The logged-in user's own account. Reads the user from the auth store. */
 export const ProfilePage = () => {
   const user = useAppSelector((state) => state.auth.user);
 

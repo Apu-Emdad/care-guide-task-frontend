@@ -21,7 +21,6 @@ export const usersApi = {
     values: UpdateUserValues;
   }) => (await axios.patch<Result<User>>(`/users/${id}`, values)).data,
 
-  /** Also deletes the user's notes, posts and sessions. */
   deleteUser: async (id: string) =>
     (await axios.delete<Result>(`/users/${id}`)).data,
 };

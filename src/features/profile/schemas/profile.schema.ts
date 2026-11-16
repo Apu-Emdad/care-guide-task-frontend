@@ -6,7 +6,6 @@ import {
   userNameSchema,
 } from '@/features/auth/schemas/register.schema';
 
-/** Same rules as the API's UpdateProfileDto and ChangePasswordDto. */
 export const profileDetailsSchema = z.object({
   userName: userNameSchema,
   fullName: fullNameSchema,

@@ -9,23 +9,14 @@ import {
 import { ROLE, type RoleName } from './roles';
 import { ROUTES } from './routes';
 
-/** A parent may have no url; a leaf must have one. */
 export interface NavItem {
   label: string;
   url?: string;
-  /** Top-level items need one, since the collapsed sidebar shows only icons. */
   icon?: Icon;
-  /** Roles that see the link. Left out means everyone. */
   roles?: RoleName[];
   children?: NavItem[];
 }
 
-/**
- * Sidebar links
- *
- * A USER sees My notes and Posts. An ADMIN also sees All notes, Users and Interests.
- * Hiding a link only hides the UI: the API guards the route.
- */
 export const NAV_ITEMS: NavItem[] = [
   { label: 'My notes', url: ROUTES.notes, icon: IconNotes },
   { label: 'Posts', url: ROUTES.posts, icon: IconNews },

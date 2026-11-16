@@ -16,7 +16,6 @@ export interface UsersList {
   users: User[];
 }
 
-/** Everything the list page filters by. Same fields as the API's UsersQueryDto. */
 export interface UsersFiltersState {
   search: string;
   role: string;

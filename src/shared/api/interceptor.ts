@@ -3,7 +3,6 @@ import type { AuthPayload, Result } from './types';
 
 declare module 'axios' {
   interface AxiosRequestConfig {
-    /** Don't try to refresh the access token when this request gets a 401. */
     skipAuthRefresh?: boolean;
     _retried?: boolean;
   }
@@ -12,7 +11,6 @@ declare module 'axios' {
 export const API_URL: string =
   import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api';
 
-/** withCredentials sends the httpOnly refresh cookie to the API. */
 export const axios = baseAxios.create({
   baseURL: API_URL,
   withCredentials: true,
@@ -30,19 +28,12 @@ let handlers: Handlers = {
   onLogout: () => {},
 };
 
-/** Called once by the store, so this file doesn't import the store (no import cycle). */
 export const configureInterceptor = (next: Handlers) => {
   handlers = next;
 };
 
 let refreshing: Promise<AuthPayload> | null = null;
 
-/**
- * Gets a new access token with the refresh cookie.
- *
- * The API rotates the refresh token and revokes every session if an old one is reused.
- * So parallel callers (React StrictMode, several 401s at once) share one request.
- */
 export const refreshSession = (): Promise<AuthPayload> => {
   refreshing ??= axios
     .post<Result<AuthPayload>>('/auth/refresh', null, { skipAuthRefresh: true })
@@ -83,11 +74,9 @@ axios.interceptors.response.use(undefined, async (error: AxiosError) => {
   return axios(config);
 });
 
-/** True when the API answered 403: the user is logged in but their role can't do this. */
 export const isForbidden = (error: unknown): boolean =>
   isAxiosError(error) && error.response?.status === 403;
 
-/** The API's `message` for a failed request, or a fallback. */
 export const getErrorMessage = (
   error: unknown,
   fallback = 'Something went wrong',

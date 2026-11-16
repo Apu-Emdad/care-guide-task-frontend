@@ -29,7 +29,6 @@ export const Header = ({ navOpened, onToggleNav }: Props) => {
   const dispatch = useAppDispatch();
   const queryClient = useQueryClient();
 
-  // The session ends on this device even if the API call fails.
   const logout = useMutation({
     mutationFn: authApi.logout,
     onSettled: () => {

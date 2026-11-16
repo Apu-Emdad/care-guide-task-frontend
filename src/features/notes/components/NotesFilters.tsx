@@ -8,7 +8,6 @@ import type { NotesFiltersState } from '../types';
 interface Props {
   filters: NotesFiltersState;
   setFilters: Dispatch<SetStateAction<NotesFiltersState>>;
-  /** First part of the page's query key: `notes` for My notes, `all-notes` for the admin list. */
   queryKey: string;
 }
 
@@ -34,7 +33,6 @@ export const NotesFilters = ({ filters, setFilters, queryKey }: Props) => {
   const handleRefresh = () => {
     setSearchText('');
     setFilters(EMPTY_FILTERS);
-    // Refetches only when the filters were already empty; otherwise the new filters load the list.
     queryClient.refetchQueries({
       queryKey: [queryKey, EMPTY_FILTERS],
       exact: true,

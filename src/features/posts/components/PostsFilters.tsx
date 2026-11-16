@@ -8,13 +8,10 @@ import type { PostsFiltersState, UserPostsFiltersState } from '../types';
 interface Props {
   filters: PostsFiltersState;
   setFilters: Dispatch<SetStateAction<PostsFiltersState>>;
-  /** The author picked in the table. Empty shows all posts. */
   authorId: string;
   setAuthorId: Dispatch<SetStateAction<string>>;
   setUserPostsFilters: Dispatch<SetStateAction<UserPostsFiltersState>>;
-  /** Name of the picked author, read from the API response. */
   authorName?: string;
-  /** How many posts the picked author has. */
   authorTotal: number;
 }
 
@@ -59,7 +56,6 @@ export const PostsFilters = ({
     setSearchText('');
     setFilters(EMPTY_FILTERS);
     handleClearAuthor();
-    // Refetches only when the filters were already empty; otherwise the new filters load the list.
     queryClient.refetchQueries({
       queryKey: ['posts', EMPTY_FILTERS],
       exact: true,
@@ -68,7 +64,6 @@ export const PostsFilters = ({
 
   return (
     <Group gap="sm" grow={false}>
-      {/* One author's posts come from the aggregation, which has no search. */}
       {authorId ? (
         <Group style={{ flex: 1, minWidth: 220 }} h={36} gap="sm">
           <Button

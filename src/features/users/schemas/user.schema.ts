@@ -8,7 +8,6 @@ import {
 import { INTEREST } from '@/shared/constants/interests';
 import { ROLE } from '@/shared/constants/roles';
 
-/** Same rules as the API's UpdateUserDto: everything except the password. */
 export const updateUserSchema = z.object({
   userName: userNameSchema,
   fullName: fullNameSchema,
@@ -17,12 +16,10 @@ export const updateUserSchema = z.object({
   interests: z.array(z.enum(Object.values(INTEREST))),
 });
 
-/** Same rules as the API's CreateUserDto: an admin sets the first password. */
 export const createUserSchema = updateUserSchema.extend({
   password: passwordSchema,
 });
 
-/** The edit form has no password field, so its empty value passes. It is never sent. */
 export const editUserFormSchema = updateUserSchema.extend({
   password: z.string(),
 });

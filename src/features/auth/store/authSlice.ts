@@ -1,7 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { AuthPayload, AuthUser } from '@/shared/api/types';
 
-/** loading: checking for a saved session on page load. */
 export type AuthStatus = 'loading' | 'authenticated' | 'guest';
 
 export interface AuthState {
@@ -28,7 +27,6 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.status = 'authenticated';
     },
-    /** After the user changes their own details. */
     setUser(state, action: PayloadAction<AuthUser>) {
       state.user = action.payload;
     },

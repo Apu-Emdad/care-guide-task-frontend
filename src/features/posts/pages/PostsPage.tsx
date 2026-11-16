@@ -49,14 +49,12 @@ import type {
   UserPostsFiltersState,
 } from '../types';
 
-/** The post being edited, or `{}` for a new post. `null` while the form is closed. */
 type PostFormTarget = { post?: Post } | null;
 
 export const PostsPage = () => {
   const currentUserId = useAppSelector((state) => state.auth.user?.id);
   const [filters, setFilters] = useState<PostsFiltersState>(EMPTY_FILTERS);
   const location = useLocation();
-  // The Users page opens this page on one author's posts by passing their id.
   const [authorId, setAuthorId] = useState<string>(
     () => (location.state as { authorId?: string } | null)?.authorId ?? '',
   );
@@ -65,7 +63,6 @@ export const PostsPage = () => {
   const [formTarget, setFormTarget] = useState<PostFormTarget>(null);
   const [viewPost, setViewPost] = useState<Post | null>(null);
 
-  // Picking an author switches to that author's posts, from the $lookup aggregation.
   const { data, refetch, isPending, error } = useQuery({
     queryKey: authorId
       ? ['posts', 'user', authorId, userPostsFilters]
@@ -77,7 +74,6 @@ export const PostsPage = () => {
     placeholderData: keepPreviousData,
   });
 
-  // The pagination of whichever list is showing.
   const pageFilters = authorId ? userPostsFilters : filters;
   const handlePageChange = (page: number) =>
     authorId
@@ -186,7 +182,6 @@ export const PostsPage = () => {
   );
 };
 
-/** Characters of content shown in the table. View shows the whole post. */
 const CONTENT_PREVIEW_LENGTH = 80;
 
 interface TableHeadersDeps {

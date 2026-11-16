@@ -30,10 +30,6 @@ interface Props<T> {
   pagination?: TablePagination;
 }
 
-/**
- * Shows a loader, the error with a retry button, or an empty state before the rows.
- * Renders pagination under the rows when `pagination` is passed and there is more than one page.
- */
 export const CustomTable = <T,>({
   headers,
   rows,

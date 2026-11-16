@@ -4,7 +4,6 @@ import { IconAlertTriangle, IconLock } from '@tabler/icons-react';
 interface Props {
   message: string;
   onRetry?: () => void;
-  /** A 403: shows "No access" and no retry button, since trying again won't help. */
   forbidden?: boolean;
 }
 

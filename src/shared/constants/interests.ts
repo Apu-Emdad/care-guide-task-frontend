@@ -1,4 +1,3 @@
-/** Interest names, same values as the API (src/common/constants/interests.ts). */
 export const INTEREST = {
   MUSIC: 'MUSIC',
   TRAVEL: 'TRAVEL',

@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-/** Same rules as the API's CreatePostDto and UpdatePostDto. */
 export const postSchema = z.object({
   title: z
     .string()
