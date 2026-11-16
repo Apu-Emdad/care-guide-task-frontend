@@ -14,8 +14,8 @@ export interface InterestGroup {
   users: InterestUser[];
 }
 
-/** Paging of the users inside every group. Same fields as the API's UsersByInterestQueryDto. */
-export interface InterestsFiltersState {
+export interface InterestsQuery {
+  interest?: InterestName;
   page: number;
   pageSize: number;
 }
