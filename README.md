@@ -6,6 +6,10 @@
 > [!TIP]
 > **No need to copy tokens in Swagger.** After you register or log in, Swagger fills in the access token for you. When it expires, Swagger refreshes it and sends your request again.
 
+## Tech stack
+
+React, TypeScript, Mantine, TanStack Query, Redux Toolkit, React Hook Form, Zod.
+
 ## Features
 
 - **Auth:** register, log in with user name or email, log out. The refresh cookie restores the session after a reload, and an expired token refreshes by itself.
@@ -14,10 +18,6 @@
 - **Posts:** everyone's posts with search and paging. Only the author can edit or delete. Click an author to see only their posts (the `$lookup` aggregation).
 - **Admin:** all notes (view only), users (add, edit, delete, filter by role and interest) and users grouped by interest (the `$group` aggregation).
 - **Profile:** change name, user name, email and password.
-
-## Tech stack
-
-Node 24, React 19, TypeScript, Mantine, TanStack Query, Redux Toolkit, React Hook Form, Zod.
 
 ## Project structure
 
